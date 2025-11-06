@@ -73,4 +73,32 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  
+  # Tmux configuration
+  programs.tmux = {
+    enable = true;
+    prefix = "C-a";
+    mouse = true;
+
+    
+    # Terminal settings
+    terminal = "tmux-256color";
+    extraConfig = ''
+      set -ga terminal-overrides ",xterm-256color:Tc" # For true color support
+      
+      # Switch panes using Prefix+h/j/k/l with tap
+      # Resize panes using Prefix+h/j/k/l with hold (repeat enabled)
+      bind-key -r -T prefix h select-pane -L
+      bind-key -r -T prefix j select-pane -D
+      bind-key -r -T prefix k select-pane -U
+      bind-key -r -T prefix l select-pane -R
+      
+      # Enable repeat mode for hjkl with the same keys
+      bind-key -r -T prefix C-h resize-pane -L
+      bind-key -r -T prefix C-j resize-pane -D
+      bind-key -r -T prefix C-k resize-pane -U
+      bind-key -r -T prefix C-l resize-pane -R
+      
+    '';
+  };
 }

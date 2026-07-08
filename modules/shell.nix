@@ -17,6 +17,13 @@
       vi = "nvim";
       vim = "nvim";
 
+      # ls/grep colors. bash expands the ls alias recursively, so ll/la/l
+      # inherit --color too. LS_COLORS comes from programs.dircolors below.
+      ls = "ls --color=auto";
+      grep = "grep --color=auto";
+      fgrep = "fgrep --color=auto";
+      egrep = "egrep --color=auto";
+
       ll = "ls -alF";
       la = "ls -A";
       l = "ls -CF";
@@ -104,6 +111,13 @@
   };
 
   programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  # Sets LS_COLORS (via `eval $(dircolors -b)`); the --color=auto aliases above
+  # are what actually colorize ls/grep output.
+  programs.dircolors = {
     enable = true;
     enableBashIntegration = true;
   };

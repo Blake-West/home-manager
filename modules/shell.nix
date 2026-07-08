@@ -41,9 +41,15 @@
 
       sourceme = "source ~/.bashrc";
       nix_218 = ''nix --builders "" run github:NixOS/nixpkgs/release-23.11#nixVersions.nix_2_18 -- --builders ""'';
+
+      # Desktop notification when a long-running command finishes: `sleep 10; alert`
+      alert = ''notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'';
     };
 
     initExtra = ''
+      # Make `less` handle non-text input (archives, etc.) via the system lesspipe
+      [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh /usr/bin/lesspipe)"
+
       # vi mode with jk chord to leave insert
       set -o vi
       bind -m vi-insert '"jk": vi-movement-mode'

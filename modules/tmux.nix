@@ -11,7 +11,14 @@
     # plugin here: the status bar below is hand-crafted, so the catppuccin
     # plugin would only fight it.
     plugins = [
-      pkgs.tmuxPlugins.resurrect
+      {
+        plugin = pkgs.tmuxPlugins.resurrect;
+        # This nixpkgs build defaults to the legacy ~/.tmux/resurrect. Pin it to
+        # the XDG path where the pre-migration history (and continuum saves) live.
+        extraConfig = ''
+          set -g @resurrect-dir '~/.local/share/tmux/resurrect'
+        '';
+      }
       {
         plugin = pkgs.tmuxPlugins.continuum;
         extraConfig = ''

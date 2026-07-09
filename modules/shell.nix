@@ -43,7 +43,9 @@
       nix_218 = ''nix --builders "" run github:NixOS/nixpkgs/release-23.11#nixVersions.nix_2_18 -- --builders ""'';
 
       # Desktop notification when a long-running command finishes: `sleep 10; alert`
-      alert = ''notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'';
+      # Raw value with literal single quotes; home-manager escapes them when it
+      # emits `alias alert='...'`.
+      alert = "notify-send --urgency=low -i \"$([ $? = 0 ] && echo terminal || echo error)\" \"$(history|tail -n1|sed -e 's/^\\s*[0-9]\\+\\s*//;s/[;&|]\\s*alert$//')\"";
     };
 
     initExtra = ''

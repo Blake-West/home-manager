@@ -23,6 +23,7 @@
         plugin = pkgs.tmuxPlugins.continuum;
         extraConfig = ''
           set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '5'
         '';
       }
       pkgs.tmuxPlugins.fzf-tmux-url
@@ -98,7 +99,11 @@
 
       set -g status-left "#[fg=#11111b,bg=#89b4fa,bold]  #S #[fg=#89b4fa,bg=#181825,nobold]"
 
+      # The continuum plugin injects its periodic-save hook into status-right,
+      # but the hand-crafted bar below would overwrite it. Re-add the hook
+      # explicitly at the front so auto-save keeps firing on status refresh.
       set -g status-right "\
+      #(${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/scripts/continuum_save.sh)\
       #[fg=#45475a,bg=#181825]\
       #[fg=#a6e3a1,bg=#45475a]  #(~/.config/tmux/scripts/cpu.sh) \
       #[fg=#585b70,bg=#45475a]\

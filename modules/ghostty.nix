@@ -1,5 +1,15 @@
 { config, pkgs, ... }:
 {
+  # Symbola covers the Unicode media-control block (U+23E9-U+23FA: ⏵ ⏸ ⏩ ...)
+  # that JetBrainsMono Nerd Font lacks, so the ghostty fallback chain below can
+  # render glyphs like the ⏵⏵ "accept edits" indicator.
+  home.packages = [ pkgs.symbola ];
+
+  # On non-NixOS, this links profile fonts into ~/.local/share/fonts (an
+  # xdg dir the system /etc/fonts/fonts.conf already scans) so Symbola above is
+  # visible to fontconfig, and thus to ghostty's fallback resolution.
+  fonts.fontconfig.enable = true;
+
   programs.ghostty = {
     enable = true;
 
@@ -10,7 +20,12 @@
 
     settings = {
       theme = "Catppuccin Mocha";
-      font-family = "JetBrainsMono Nerd Font";
+      # Primary text font first; Symbola is consulted only for glyphs JetBrains
+      # is missing (fallback order, so it never restyles normal text).
+      font-family = [
+        "JetBrainsMono Nerd Font"
+        "Symbola"
+      ];
       font-size = 14;
       keybind = [
         "ctrl+alt+h=goto_split:left"

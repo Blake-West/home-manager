@@ -111,6 +111,10 @@
       Control-r: reverse-search-history
       "k": history-search-backward
       "j": history-search-forward
+      # Accept the line, then re-enter command mode. readline hardcodes a reset
+      # to insert mode on every new prompt; the trailing ESC undoes that so we
+      # stay in whatever mode we submitted from. Insert-mode Enter is untouched.
+      "\C-m": "\n\e"
 
       set keymap vi-insert
       Control-r: reverse-search-history

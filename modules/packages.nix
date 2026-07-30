@@ -8,6 +8,7 @@
     # terminal / UI
     tmux
     chafa
+    tio
 
     # editor ecosystem
     tree-sitter

@@ -57,6 +57,15 @@
         deleted = "✘\${count}";
       };
 
+      # Default ❄️ is U+2744 + VS16 (U+FE0F), which forces emoji presentation
+      # only Noto Color Emoji satisfies. The monospace fallback chain (JetBrains
+      # then Symbola) has no emoji-presentation font, so it renders as tofu.
+      # Use the monochrome NixOS Nerd Font glyph instead, matching git_branch.
+      nix_shell = {
+        symbol = " ";
+        format = "via [$symbol$state]($style) ";
+      };
+
       character = {
         success_symbol = "[❯](bold green)";
         error_symbol = "[❯](bold red)";

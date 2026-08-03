@@ -26,7 +26,7 @@
         "JetBrainsMono Nerd Font"
         "Symbola"
       ];
-      font-size = 14;
+      font-size = 12;
       keybind = [
         "ctrl+alt+h=goto_split:left"
         "ctrl+alt+j=goto_split:down"

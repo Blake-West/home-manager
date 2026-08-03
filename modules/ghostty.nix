@@ -20,6 +20,10 @@
 
     settings = {
       theme = "Catppuccin Mocha";
+      # Ghostty's shell integration re-forces the cursor to the configured
+      # style at every prompt, clobbering readline's vi-mode DECSCUSR bar/block
+      # switching. Opt out of just the cursor feature so .inputrc controls it.
+      shell-integration-features = "no-cursor";
       # Primary text font first; Symbola is consulted only for glyphs JetBrains
       # is missing (fallback order, so it never restyles normal text).
       font-family = [

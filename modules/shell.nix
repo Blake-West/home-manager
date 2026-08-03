@@ -69,7 +69,7 @@
         if [ -f "$work_flake/flake.nix" ]; then
           NIXPKGS_ALLOW_UNFREE=1 home-manager switch --flake "$work_flake#bwest-work" --impure "$@"
         else
-          NIXPKGS_ALLOW_UNFREE=1 home-manager switch --flake "$HOME/.config/home-manager#bwest" --impure "$@"
+          NIXPKGS_ALLOW_UNFREE=1 home-manager switch --flake "$HOME/Code/personal/home-manager#bwest" --impure "$@"
         fi
       }
 

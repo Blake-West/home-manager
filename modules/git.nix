@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -18,6 +18,12 @@
 
       init.defaultBranch = "main";
       pull.rebase = true;
+
+      # Shell-command aliases live as real bash under ./git/aliases so they stay
+      # shellcheck-able. The leading "!" marks the alias as a shell command; the
+      # trailing newline must go because git appends "$@", which would otherwise
+      # land on its own line as a bare command.
+      alias.wt = "!" + lib.removeSuffix "\n" (builtins.readFile ./git/aliases/wt.sh);
     };
 
     ignores = [

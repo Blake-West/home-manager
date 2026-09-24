@@ -9,6 +9,7 @@
     tmux
     chafa
     tio
+    herdr
 
     # editor ecosystem
     tree-sitter

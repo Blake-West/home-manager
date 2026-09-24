@@ -9,5 +9,6 @@
     ./tmux.nix
     ./ghostty.nix
     ./nvim.nix
+    ./herdr.nix
   ];
 }

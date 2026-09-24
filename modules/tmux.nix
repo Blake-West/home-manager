@@ -6,6 +6,9 @@
     mouse = true;
     keyMode = "vi";
     terminal = "tmux-256color";
+    # Claude Code runs on the normal screen (tui=default), so its output lands in
+    # tmux scrollback. 2000 lines is only a few turns of it.
+    historyLimit = 50000;
 
     # Plugins declaratively via nix, replacing runtime TPM. Catppuccin is NOT a
     # plugin here: the status bar below is hand-crafted, so the catppuccin

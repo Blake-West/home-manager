@@ -10,6 +10,7 @@
     tmux
     chafa
     tio
+    wl-clipboard
 
     # editor ecosystem
     tree-sitter

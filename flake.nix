@@ -42,5 +42,16 @@
           ./modules/default.nix
         ];
       };
+
+      # Personal desktop "rain": base config plus machine-specific audio.
+      homeConfigurations."bwest-rain" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/bwest/home.nix
+          ./modules/default.nix
+          ./modules/hd60s-monitor.nix
+        ];
+      };
     };
 }

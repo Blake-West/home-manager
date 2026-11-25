@@ -10,6 +10,13 @@
   # visible to fontconfig, and thus to ghostty's fallback resolution.
   fonts.fontconfig.enable = true;
 
+  # Ubuntu's GNOME Shell only sees nix-profile desktop entries if the login
+  # session's XDG_DATA_DIRS includes the profile. Link the launcher into
+  # ~/.local/share/applications, which is always scanned, so Ghostty shows up
+  # in app search and can be pinned to the dock.
+  xdg.dataFile."applications/com.mitchellh.ghostty.desktop".source =
+    "${config.programs.ghostty.package}/share/applications/com.mitchellh.ghostty.desktop";
+
   programs.ghostty = {
     enable = true;
 

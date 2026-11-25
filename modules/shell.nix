@@ -94,8 +94,8 @@
     variables = {
       editing-mode = "vi";
       show-mode-in-prompt = true;
-      completion-ignore-case = true;
-      completion-map-case = true;
+      completion-ignore-case = false;
+      completion-map-case = false;
       show-all-if-ambiguous = true;
       # Cursor shape: block in command mode, bar in insert mode.
       vi-cmd-mode-string = ''\1\e[2 q\2'';

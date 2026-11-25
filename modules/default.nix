@@ -10,5 +10,6 @@
     ./ghostty.nix
     ./nvim.nix
     ./herdr.nix
+    ./audeze.nix
   ];
 }
